@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>مكيفات مكة المكرمة – عرض خاص</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green: #25D366;
+      --green-dark: #128C7E;
+      --blue: #1565C0;
+      --blue-light: #1E88E5;
+      --gold: #F9A825;
+      --gold-dark: #F57F17;
+      --bg: #EAF4FB;
+      --card: #ffffff;
+      --text: #1a1a2e;
+      --muted: #5a6a7a;
+      --radius: 20px;
+    }
+
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: linear-gradient(135deg, #0d47a1 0%, #1565c0 40%, #0288d1 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 24px 12px 120px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      max-width: 480px;
+      width: 100%;
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.35);
+      position: relative;
+    }
+
+    /* ===== HEADER ===== */
+    .header {
+      background: linear-gradient(135deg, #0d47a1, #1565c0, #0288d1);
+      color: #fff;
+      text-align: center;
+      padding: 32px 20px 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -40px; left: -40px;
+      width: 200px; height: 200px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 50%;
+    }
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; right: -30px;
+      width: 240px; height: 240px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 50%;
+    }
+
+    .badge-city {
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      border: 1.5px solid rgba(255,255,255,0.4);
+      border-radius: 30px;
+      padding: 4px 18px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+      position: relative; z-index: 1;
+    }
+
+    .header-icon {
+      font-size: 52px;
+      margin-bottom: 8px;
+      position: relative; z-index: 1;
+      display: block;
+    }
+
+    .header h1 {
+      font-size: 28px;
+      font-weight: 900;
+      line-height: 1.3;
+      margin-bottom: 4px;
+      position: relative; z-index: 1;
+    }
+
+    .header p.sub {
+      font-size: 14px;
+      opacity: 0.85;
+      position: relative; z-index: 1;
+    }
+
+    /* ===== OFFER BANNER ===== */
+    .offer-banner {
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+      color: #1a1a2e;
+      text-align: center;
+      padding: 18px 16px;
+    }
+
+    .offer-banner .offer-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      opacity: 0.75;
+      margin-bottom: 4px;
+    }
+
+    .offer-banner .price-line {
+      font-size: 22px;
+      font-weight: 900;
+      line-height: 1.2;
+    }
+
+    .offer-banner .price-line span {
+      font-size: 42px;
+      font-weight: 900;
+      color: #0d47a1;
+    }
+
+    .offer-banner .condition {
+      font-size: 12px;
+      margin-top: 4px;
+      opacity: 0.8;
+      font-weight: 600;
+    }
+
+    /* ===== BODY ===== */
+    .body {
+      padding: 24px 20px;
+    }
+
+    /* Services */
+    .section-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--blue);
+      border-right: 4px solid var(--gold);
+      padding-right: 10px;
+      margin-bottom: 14px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .service-item {
+      background: #F0F8FF;
+      border-radius: 12px;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--text);
+      border: 1.5px solid #c8e6f5;
+    }
+
+    .service-item .icon {
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    /* Features */
+    .features-list {
+      list-style: none;
+      margin-bottom: 24px;
+    }
+
+    .features-list li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      padding: 8px 0;
+      border-bottom: 1px solid #f0f4f8;
+    }
+
+    .features-list li:last-child { border-bottom: none; }
+
+    .features-list li .check {
+      width: 22px; height: 22px;
+      background: linear-gradient(135deg, #1565c0, #0288d1);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff;
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+
+    /* Phone */
+    .phone-box {
+      background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+      border-radius: 14px;
+      padding: 16px 20px;
+      text-align: center;
+      margin-bottom: 20px;
+      border: 1.5px solid #90caf9;
+    }
+
+    .phone-box .phone-label {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .phone-box .phone-number {
+      font-size: 26px;
+      font-weight: 900;
+      color: var(--blue);
+      letter-spacing: 2px;
+      direction: ltr;
+      display: block;
+    }
+
+    /* CTA Buttons */
+    .cta-buttons {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 12px;
+      border-radius: 14px;
+      font-family: 'Cairo', sans-serif;
+      font-size: 15px;
+      font-weight: 800;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+
+    .btn:active { transform: scale(0.97); }
+
+    .btn-whatsapp {
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      color: #fff;
+      box-shadow: 0 6px 20px rgba(37,211,102,0.4);
+    }
+
+    .btn-call {
+      background: linear-gradient(135deg, #1E88E5, #1565C0);
+      color: #fff;
+      box-shadow: 0 6px 20px rgba(30,136,229,0.4);
+    }
+
+    .btn svg {
+      width: 20px; height: 20px;
+      fill: currentColor;
+      flex-shrink: 0;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: #f8fafc;
+      border-top: 1px solid #e8edf2;
+      padding: 14px 20px;
+      text-align: center;
+    }
+
+    .footer .designer {
+      font-size: 11.5px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .footer .designer a {
+      color: var(--green-dark);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .footer .copy {
+      font-size: 11px;
+      color: #aab;
+      margin-top: 2px;
+    }
+
+    /* ===== FLOATING SIDE BUTTONS ===== */
+    .float-buttons {
+      position: fixed;
+      left: 16px;
+      bottom: 80px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      z-index: 999;
+    }
+
+    .float-btn {
+      width: 54px; height: 54px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+      transition: transform 0.2s;
+      animation: pulse-ring 2s infinite;
+    }
+
+    .float-btn:hover, .float-btn:active { transform: scale(1.1); }
+
+    .float-wa {
+      background: var(--green);
+      animation-name: pulse-green;
+    }
+
+    .float-call {
+      background: var(--blue-light);
+      animation-name: pulse-blue;
+    }
+
+    .float-btn svg {
+      width: 26px; height: 26px;
+      fill: #fff;
+    }
+
+    @keyframes pulse-green {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(37,211,102,0.5); }
+      50% { box-shadow: 0 0 0 10px rgba(37,211,102,0); }
+    }
+
+    @keyframes pulse-blue {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(30,136,229,0.5); }
+      50% { box-shadow: 0 0 0 10px rgba(30,136,229,0); }
+    }
+
+    /* Tooltip labels */
+    .float-btn::after {
+      content: attr(data-label);
+      position: absolute;
+      left: 62px;
+      background: rgba(0,0,0,0.7);
+      color: #fff;
+      font-family: 'Cairo', sans-serif;
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 6px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+    }
+
+    .float-btn:hover::after { opacity: 1; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 380px) {
+      .header h1 { font-size: 23px; }
+      .offer-banner .price-line span { font-size: 36px; }
+      .services-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== FLOATING SIDE BUTTONS ===== -->
+  <div class="float-buttons">
+    <a href="https://wa.me/966563053709" class="float-btn float-wa" target="_blank" rel="noopener" data-label="واتساب">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20.52 3.48A11.93 11.93 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.12.55 4.11 1.52 5.84L0 24l6.34-1.49A11.95 11.95 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 22c-1.85 0-3.66-.5-5.22-1.43l-.37-.22-3.76.89.89-3.67-.24-.38A9.94 9.94 0 0 1 2 12C2 6.49 6.49 2 12 2c2.67 0 5.18 1.04 7.07 2.93A9.93 9.93 0 0 1 22 12c0 5.51-4.49 10-10 10zm5.47-7.27c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07a8.16 8.16 0 0 1-2.4-1.48 9.03 9.03 0 0 1-1.66-2.07c-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.87 1.22 3.07.15.2 2.1 3.2 5.1 4.49.71.31 1.27.49 1.7.63.72.23 1.37.2 1.89.12.58-.09 1.76-.72 2.01-1.41.25-.69.25-1.28.17-1.41-.07-.13-.27-.2-.57-.35z"/>
+      </svg>
+    </a>
+    <a href="tel:0563053709" class="float-btn float-call" data-label="اتصال">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/>
+      </svg>
+    </a>
+  </div>
+
+  <!-- ===== MAIN CARD ===== -->
+  <div class="card">
+
+    <!-- Header -->
+    <div class="header">
+      <div class="badge-city">📍 مكة المكرمة فقط</div>
+      <span class="header-icon">❄️</span>
+      <h1>خدمة مكيفات مكة</h1>
+      <p class="sub">تركيب · صيانة · غسيل · فك وتركيب</p>
+    </div>
+
+    <!-- Offer Banner -->
+    <div class="offer-banner">
+      <div class="offer-label">🔥 عرض محدود</div>
+      <div class="price-line">
+        السعر الواحد <span>30</span> ريال
+      </div>
+      <div class="condition">✦ عند طلب أكثر من 5 مكيفات ✦</div>
+    </div>
+
+    <!-- Body -->
+    <div class="body">
+
+      <!-- Services -->
+      <div class="section-title">خدماتنا</div>
+      <div class="services-grid">
+        <div class="service-item">
+          <span class="icon">🔧</span> تركيب مكيفات
+        </div>
+        <div class="service-item">
+          <span class="icon">🛠️</span> صيانة شاملة
+        </div>
+        <div class="service-item">
+          <span class="icon">🫧</span> غسيل وتنظيف
+        </div>
+        <div class="service-item">
+          <span class="icon">📦</span> فك وإعادة تركيب
+        </div>
+        <div class="service-item">
+          <span class="icon">💧</span> إصلاح تسريبات
+        </div>
+        <div class="service-item">
+          <span class="icon">⚡</span> أعطال كهربائية
+        </div>
+      </div>
+
+      <!-- Features -->
+      <div class="section-title">مميزاتنا</div>
+      <ul class="features-list">
+        <li>
+          <span class="check">✓</span>
+          فنيون متخصصون وخبرة عالية
+        </li>
+        <li>
+          <span class="check">✓</span>
+          سرعة في الاستجابة والتنفيذ
+        </li>
+        <li>
+          <span class="check">✓</span>
+          أسعار منافسة وشفافية تامة
+        </li>
+        <li>
+          <span class="check">✓</span>
+          خدمة داخل مكة المكرمة فقط
+        </li>
+        <li>
+          <span class="check">✓</span>
+          ضمان على جميع الأعمال المنجزة
+        </li>
+      </ul>
+
+      <!-- Phone -->
+      <div class="phone-box">
+        <div class="phone-label">للتواصل والحجز</div>
+        <span class="phone-number">0563053709</span>
+      </div>
+
+      <!-- CTA Buttons -->
+      <div class="cta-buttons">
+        <a href="https://wa.me/966563053709" class="btn btn-whatsapp" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24">
+            <path d="M20.52 3.48A11.93 11.93 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.12.55 4.11 1.52 5.84L0 24l6.34-1.49A11.95 11.95 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 22c-1.85 0-3.66-.5-5.22-1.43l-.37-.22-3.76.89.89-3.67-.24-.38A9.94 9.94 0 0 1 2 12C2 6.49 6.49 2 12 2c2.67 0 5.18 1.04 7.07 2.93A9.93 9.93 0 0 1 22 12c0 5.51-4.49 10-10 10zm5.47-7.27c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07a8.16 8.16 0 0 1-2.4-1.48 9.03 9.03 0 0 1-1.66-2.07c-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.87 1.22 3.07.15.2 2.1 3.2 5.1 4.49.71.31 1.27.49 1.7.63.72.23 1.37.2 1.89.12.58-.09 1.76-.72 2.01-1.41.25-.69.25-1.28.17-1.41-.07-.13-.27-.2-.57-.35z"/>
+          </svg>
+          واتساب
+        </a>
+        <a href="tel:0563053709" class="btn btn-call">
+          <svg viewBox="0 0 24 24">
+            <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/>
+          </svg>
+          اتصال
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <div class="designer">
+        تم التصميم بواسطة
+        <a href="https://wa.me/201029095046" target="_blank" rel="noopener">م. نجوى إبراهيم</a>
+      </div>
+      <div class="copy">جميع الحقوق محفوظة © 2025</div>
+    </div>
+
+  </div>
+
+  <script>
+    // Smooth pulse on load
+    document.querySelectorAll('.float-btn').forEach(function(btn) {
+      btn.style.opacity = '0';
+      btn.style.transform = 'scale(0.5)';
+      btn.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+    });
+    window.addEventListener('load', function() {
+      var btns = document.querySelectorAll('.float-btn');
+      btns.forEach(function(btn, i) {
+        setTimeout(function() {
+          btn.style.opacity = '1';
+          btn.style.transform = 'scale(1)';
+        }, 300 + i * 150);
+      });
+    });
+  </script>
+</body>
+</html>
